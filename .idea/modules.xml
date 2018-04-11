@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KaspeRRAT-client.iml" filepath="$PROJECT_DIR$/.idea/modules/KaspeRRAT-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KaspeRRAT-client_main.iml" filepath="$PROJECT_DIR$/.idea/modules/KaspeRRAT-client_main.iml" group="KaspeRRAT-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KaspeRRAT-client_test.iml" filepath="$PROJECT_DIR$/.idea/modules/KaspeRRAT-client_test.iml" group="KaspeRRAT-client" />
+    </modules>
+  </component>
+</project>
