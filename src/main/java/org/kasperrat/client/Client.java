@@ -7,36 +7,34 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        //try (Socket client = new Socket(InetAddress.getLocalHost().getHostAddress(), 51635)) {
-        try (Socket client = new Socket("10.242.200.106", 5461)) {
+        try (Socket client = new Socket(InetAddress.getLocalHost().getHostAddress(), 5461)) {
             Scanner in=new Scanner(System.in);
             System.out.println("connected !");
-            PrintWriter pw=new PrintWriter(client.getOutputStream());
+            PrintWriter pw=new PrintWriter(client.getOutputStream(),true);
             BufferedReader bf=new BufferedReader(new InputStreamReader(client.getInputStream()));
 
-            String s,to;
-            while(!(s=bf.readLine()).equals("bye")){
+            String s;
+            while(true){
+                s=bf.readLine();
+                if(s.equals("bye")){
+                    client.close();
+                    break;
+                }
                 InputStream is=por(s);
                 if(is==null){
-                    pw.println("Faild");
+                    pw.println("Invalid command !");
+                    pw.println("`");
                     pw.flush();
                     continue;
                 }
                 BufferedReader br=new BufferedReader(new InputStreamReader(is));
+
                 br.lines().forEach(pw::println);
-                br.close();
+
+                pw.println("`");
                 pw.flush();
             }
-            client.close();
-            /*while(true) {
-                String s = in.nextLine();
-                pw.println(s);
-                pw.flush();
-                if(s.equals("bye")) {
-                    client.close();
-                    break;
-                }
-            }*/
+
         }catch (IOException e){
             System.out.println("Error in client");
         }
@@ -47,8 +45,7 @@ public class Main {
             Process p=new ProcessBuilder(cmd).start();
             return p.getInputStream();
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }
