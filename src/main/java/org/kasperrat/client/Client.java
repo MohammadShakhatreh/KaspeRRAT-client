@@ -42,7 +42,8 @@ public class Main {
     }
     public static InputStream por(String cmd){
         try {
-            Process p=new ProcessBuilder(cmd).start();
+            Runtime rt=Runtime.getRuntime();
+            Process p=rt.exec(cmd);
             return p.getInputStream();
         } catch (IOException e) {
             return null;
